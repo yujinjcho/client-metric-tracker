@@ -13,6 +13,19 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.events (
+    event_id uuid NOT NULL,
+    name text,
+    created_at timestamp with time zone DEFAULT now() NOT NULL,
+    user_id uuid NOT NULL,
+    properties jsonb
+);
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -28,6 +41,14 @@ CREATE TABLE public.schema_migrations (
 CREATE TABLE public.test (
     id text
 );
+
+
+--
+-- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (event_id);
 
 
 --
@@ -48,4 +69,5 @@ ALTER TABLE ONLY public.schema_migrations
 --
 
 INSERT INTO public.schema_migrations (version) VALUES
-    ('20230716040008');
+    ('20230716040008'),
+    ('20230716051811');
