@@ -1,2 +1,4 @@
 .vercel
 venv/
+secret
+psql_connect.sh
