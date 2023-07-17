@@ -1,7 +1,6 @@
-from flask import Flask
+from client_action_tracker.app_setup import initialize_app
 
-app = Flask(__name__)
-
+app = initialize_app()
 @app.route('/')
 def home():
     return 'Hello, World!'

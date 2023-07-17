@@ -1,5 +1,8 @@
 .vercel
+.idea
+
 venv/
 secret
 psql_connect.sh
+
 __pycache__
