@@ -4,9 +4,10 @@ Backend service for collecting and service client metrics.
 
 ## Local setup
 
-Requires postgres and dbmate.
+Requires postgres, dbmate and vercel.
 
-Run `dbmate up` to create database and run migrations locally.
+- `dbmate up` to create database and run migrations locally.
+- `vercel dev` to run app locally.
 
 ## Production
 
