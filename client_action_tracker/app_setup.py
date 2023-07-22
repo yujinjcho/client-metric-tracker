@@ -1,6 +1,7 @@
 import os
 import psycopg2
 from flask import Flask
+from flask_cors import CORS
 
 from client_action_tracker.client_track_service import ClientTrackService
 from client_action_tracker.datastore import Datastore
@@ -10,6 +11,8 @@ def create_app():
     print("Creating app")
 
     app = Flask(__name__)
+    CORS(app, resources={r"/*": {"origins": ["http://localhost:3001", "https://www.simpleliftingapp.com"]}})
+
     db_config = {
         'dbname': os.environ.get('DB_NAME', 'client-metric-track'),
         'password': os.environ.get('DB_PASSWORD', None),

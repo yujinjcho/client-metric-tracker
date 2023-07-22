@@ -17,14 +17,16 @@ def test():
 def event():
     data = request.get_json()
 
+    api_key = request.headers.get('api-key')
+    if not api_key:
+        return {'status': 'error', 'description': 'no api key'}, 400
+
     # TODO: move this to service
     events = []
     for event in data['events']:
         if not service.validate_event(event):
             return BadRequest(f'Invalid request body: {event}')
-        # TODO: map project_id from api key
-        event['project_id'] = '123e4567-e89b-12d3-a456-426614174000'
         events.append(event)
 
-    service.create_events(events)
+    service.create_events(events, api_key)
     return {'status': 'success'}, 200
