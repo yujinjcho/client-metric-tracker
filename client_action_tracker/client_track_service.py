@@ -1,17 +1,19 @@
 
 from client_action_tracker.utils import get_project_id
 from client_action_tracker.models import parse_event_dict
+from typing import List, Any, Optional
+from client_action_tracker.datastore import Datastore
 
 class ClientTrackService:
-    def __init__(self, datastore):
+    def __init__(self, datastore: Datastore) -> None:
         self.datastore = datastore
 
-    def hello_world(self):
+    def hello_world(self) -> str:
         # TODO: try real logger
         print("Handling hello_world")
         return 'Hello, World'
 
-    def create_events(self, events_raw, api_key):
+    def create_events(self, events_raw: List[dict], api_key: str) -> Optional[None]:
         project_id = get_project_id(api_key)
         if not project_id:
             raise ValueError("No project associated with api key")
@@ -19,7 +21,7 @@ class ClientTrackService:
         if not events_raw:
             return
 
-        events = []
+        events: List[dict] = []
         for event_raw in events_raw:
             events.append(parse_event_dict(event_raw, project_id))
 
