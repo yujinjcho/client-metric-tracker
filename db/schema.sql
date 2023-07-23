@@ -14,18 +14,18 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: events_v2; Type: TABLE; Schema: public; Owner: -
+-- Name: events; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.events_v2 (
+CREATE TABLE public.events (
     event_id uuid NOT NULL,
-    name text NOT NULL,
+    event_name text NOT NULL,
     event_type text NOT NULL,
     event_status text NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     client_created_at timestamp with time zone NOT NULL,
     client_completed_at timestamp with time zone NOT NULL,
-    client_user_id text NOT NULL,
+    client_user_id text,
     project_id uuid NOT NULL,
     properties jsonb
 );
@@ -41,10 +41,10 @@ CREATE TABLE public.schema_migrations (
 
 
 --
--- Name: events_v2 events_v2_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: events events_v2_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.events_v2
+ALTER TABLE ONLY public.events
     ADD CONSTRAINT events_v2_pkey PRIMARY KEY (event_id);
 
 
@@ -60,7 +60,7 @@ ALTER TABLE ONLY public.schema_migrations
 -- Name: events_v2_project_id_created_at_idx; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_v2_project_id_created_at_idx ON public.events_v2 USING btree (project_id, created_at DESC);
+CREATE INDEX events_v2_project_id_created_at_idx ON public.events USING btree (project_id, created_at DESC);
 
 
 --
@@ -77,4 +77,5 @@ INSERT INTO public.schema_migrations (version) VALUES
     ('20230716051811'),
     ('20230719021756'),
     ('20230719022703'),
-    ('20230723190101');
+    ('20230723190101'),
+    ('20230723202529');

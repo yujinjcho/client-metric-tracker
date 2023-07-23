@@ -16,7 +16,7 @@ class Datastore:
                 events_tuples = [
                     (
                         str(event.event_id),
-                        event.name,
+                        event.event_name,
                         event.event_type.value,
                         event.event_status.value,
                         event.client_created_at.isoformat(),
@@ -30,7 +30,7 @@ class Datastore:
                 psycopg2.extras.execute_values(
                     cur,
                     """
-                    INSERT INTO events_v2 (event_id, name, event_type, event_status, client_created_at, client_completed_at, client_user_id, project_id, properties)
+                    INSERT INTO events (event_id, event_name, event_type, event_status, client_created_at, client_completed_at, client_user_id, project_id, properties)
                     VALUES %s
                     """,
                     events_tuples,
