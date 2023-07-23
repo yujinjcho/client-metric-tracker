@@ -4,7 +4,7 @@ Backend service for collecting and service client metrics.
 
 ## Local setup/development
 
-Requires postgres, dbmate and vercel.
+Requires postgres, dbmate, python3.9 and vercel.
 
 - `dbmate up` to create database and run migrations locally.
 - `vercel dev` to run app locally.
@@ -32,3 +32,10 @@ Project is configured to release on push.
 git push origin main
 
 ```
+
+## TODO
+- use pipenv so we can explicitly set python version
+- complete type hinting
+- look into automatically applying PEP8 suggestions in IDE
+- better logging
+- some unit and integration tests

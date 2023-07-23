@@ -20,7 +20,6 @@ class EventStatus(Enum):
 @dataclass
 class Event:
     event_id: UUID
-    # TODO: rename this to event_name
     event_name: str
     event_type: EventType
     event_status: EventStatus

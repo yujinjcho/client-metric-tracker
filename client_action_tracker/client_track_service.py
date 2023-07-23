@@ -2,8 +2,6 @@
 from client_action_tracker.utils import get_project_id
 from client_action_tracker.models import parse_event_dict
 
-# TODO: automatically apply PEP8 changes
-
 class ClientTrackService:
     def __init__(self, datastore):
         self.datastore = datastore

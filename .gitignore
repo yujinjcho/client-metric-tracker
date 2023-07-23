@@ -2,6 +2,7 @@
 .idea
 
 venv/
+venv2/
 secret
 psql_connect.sh
 

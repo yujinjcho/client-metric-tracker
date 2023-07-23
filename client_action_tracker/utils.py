@@ -1,7 +1,9 @@
 import os
 
+from typing import Union
+
 # For proto-type using env vars.
-def get_project_id(api_key: str) -> str | None:
+def get_project_id(api_key: str) -> Union[str, None]:
     keys_to_project_id_raw = os.environ.get('KEYS_TO_PROJECT_ID', None)
     if not keys_to_project_id_raw:
         return None
