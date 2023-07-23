@@ -1,8 +1,8 @@
 from dataclasses import dataclass
+from datetime import datetime
+from enum import Enum
 from typing import Dict, Any, Optional
 from uuid import UUID
-from enum import Enum
-from datetime import datetime
 
 
 class EventType(Enum):
@@ -11,11 +11,13 @@ class EventType(Enum):
     ONE_TIME = 'one_time'
     COMPLETION = 'completion'
 
+
 class EventStatus(Enum):
     """Do not change the string values otherwise will lose
     compatibility with how it's stored in the database"""
     SUCCESS = "success"
     FAIL = "fail"
+
 
 @dataclass
 class Event:
@@ -29,6 +31,7 @@ class Event:
     client_user_id: Optional[str]
     properties: Dict[str, Any]
 
+
 def parse_event_dict(event_dict: dict, project_id: str) -> Event:
     try:
         event_id = UUID(event_dict["event_id"])
@@ -41,7 +44,8 @@ def parse_event_dict(event_dict: dict, project_id: str) -> Event:
         client_user_id = event_dict.get("client_user_id")  # Returns None if "client_user_id" is not in the dictionary
         properties = event_dict["properties"]
 
-        return Event(event_id, event_name, event_type, event_status, project_id, client_created_at, client_completed_at, client_user_id, properties)
+        return Event(event_id, event_name, event_type, event_status, project_id, client_created_at, client_completed_at,
+                     client_user_id, properties)
 
     except (ValueError, KeyError, TypeError) as e:
         raise ValueError(f"Invalid event dict: {event_dict}") from e

@@ -1,5 +1,6 @@
-
 import os
+from typing import Tuple
+
 import psycopg2
 from flask import Flask
 from flask_cors import CORS
@@ -7,7 +8,6 @@ from flask_cors import CORS
 from client_action_tracker.client_track_service import ClientTrackService
 from client_action_tracker.datastore import Datastore
 
-from typing import Tuple
 
 def create_app() -> Tuple[Flask, ClientTrackService]:
     print("Creating app")

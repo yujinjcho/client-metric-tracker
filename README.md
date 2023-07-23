@@ -19,6 +19,7 @@ with having a vercel project.
 Python code deployed on vercel and database is provisioned by Supabase.
 
 Run the following with actual config values to execute migrations in production.
+
 ```
 # See migration status
 DATABASE_URL="postgres://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=disable" dbmate status
@@ -27,13 +28,16 @@ DATABASE_URL="postgres://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=disable" dbmat
 ```
 
 ## Release
+
 Project is configured to release on push.
+
 ```
 git push origin main
 
 ```
 
 ## TODO
+
 - use pipenv so we can explicitly set python version
 - complete type hinting
 - look into automatically applying PEP8 suggestions in IDE

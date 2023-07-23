@@ -6,6 +6,7 @@ import psycopg2.extras
 
 from client_action_tracker.models import Event
 
+
 class Datastore:
     def __init__(self, conn):
         self.conn = conn
