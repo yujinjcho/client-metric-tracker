@@ -3,17 +3,19 @@ from typing import List
 
 import psycopg2
 import psycopg2.extras
+from psycopg2.errors import Error
+from psycopg2.extensions import connection, cursor
 
 from client_action_tracker.models import Event
 
 
 class Datastore:
-    def __init__(self, conn):
-        self.conn = conn
+    def __init__(self, conn: connection):
+        self.conn: connection = conn
 
     def insert_events(self, events: List[Event]):
         try:
-            with self.conn.cursor() as cur:
+            with self.conn.cursor() as cur:  # type: cursor
                 events_tuples = [
                     (
                         str(event.event_id),
@@ -38,6 +40,6 @@ class Datastore:
                     page_size=1000
                 )
                 self.conn.commit()
-        except psycopg2.Error as e:
+        except Error as e:
             self.conn.rollback()
             raise e
