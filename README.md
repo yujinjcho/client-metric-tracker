@@ -39,7 +39,5 @@ git push origin main
 ## TODO
 
 - use pipenv so we can explicitly set python version
-- complete type hinting
-- look into automatically applying PEP8 suggestions in IDE
 - better logging
 - some unit and integration tests
