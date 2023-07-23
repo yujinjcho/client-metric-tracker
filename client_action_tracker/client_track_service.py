@@ -58,9 +58,6 @@ class ClientTrackService:
         self.datastore.insert_events(events)
         return
 
-    def create_test(self):
-        self.datastore.insert_test()
-
 # TODO: for now just use environ variable
 def get_project_id(api_key):
     keys_to_project_id_raw = os.environ.get('KEYS_TO_PROJECT_ID', None)

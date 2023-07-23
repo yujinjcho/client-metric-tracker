@@ -8,11 +8,6 @@ app, service = create_app()
 def home():
     return service.hello_world()
 
-@app.route('/test', methods=['POST'])
-def test():
-    service.create_test()
-    return {'status': 'success'}, 200
-
 @app.route('/events', methods=['GET', 'POST'])
 def event():
     data = request.get_json()
