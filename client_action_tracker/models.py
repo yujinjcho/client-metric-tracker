@@ -1,6 +1,5 @@
 from dataclasses import dataclass
-import json
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional
 from uuid import UUID
 from enum import Enum
 from datetime import datetime
