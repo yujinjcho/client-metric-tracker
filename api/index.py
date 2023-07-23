@@ -16,12 +16,9 @@ def event():
     if not api_key:
         return {'status': 'error', 'description': 'no api key'}, 400
 
-    # TODO: move this to service
-    events = []
-    for event in data['events']:
-        if not service.validate_event(event):
-            return BadRequest(f'Invalid request body: {event}')
-        events.append(event)
+    events = data.get('events')
+    if not events:
+        raise BadRequest("Missing 'events' field")
 
     service.create_events(events, api_key)
     return {'status': 'success'}, 200

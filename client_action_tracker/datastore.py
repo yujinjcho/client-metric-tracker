@@ -1,27 +1,29 @@
 import json
+from typing import List
 
 import psycopg2
 import psycopg2.extras
+
+from client_action_tracker.models import Event
 
 class Datastore:
     def __init__(self, conn):
         self.conn = conn
 
-    def insert_events(self, events):
+    def insert_events(self, events: List[Event]):
         try:
             with self.conn.cursor() as cur:
-                print(events)
                 events_tuples = [
                     (
-                        event['event_id'],
-                        event['name'],
-                        event['event_type'],
-                        event['event_status'],
-                        event['client_created_at'],
-                        event['client_completed_at'],
-                        event['client_user_id'],
-                        event['project_id'],
-                        json.dumps(event.get('properties', {}))  # Convert the properties to JSON string
+                        str(event.event_id),
+                        event.name,
+                        event.event_type.value,
+                        event.event_status.value,
+                        event.client_created_at.isoformat(),
+                        event.client_completed_at.isoformat(),
+                        event.client_user_id,
+                        str(event.project_id),
+                        json.dumps(event.properties)  # Convert the properties to JSON string
                     )
                     for event in events
                 ]
@@ -32,7 +34,6 @@ class Datastore:
                     VALUES %s
                     """,
                     events_tuples,
-                    # template="(%(event_id)s, %(name)s, %(event_type)s, %(event_status)s, %(client_created_at)s, %(client_completed_at)s, %(client_user_id)s, %(project_id)s, %(properties)s)",
                     page_size=1000
                 )
                 self.conn.commit()
