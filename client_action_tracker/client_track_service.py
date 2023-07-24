@@ -10,7 +10,6 @@ class ClientTrackService:
         self.datastore = datastore
 
     def hello_world(self) -> str:
-        # TODO: try real logger
         print("Handling hello_world")
         return 'Hello, World'
 
