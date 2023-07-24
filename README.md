@@ -14,6 +14,12 @@ also just run the flask app locally if you wanted. I'm not doing that here
 since I didn't want multiple ways to run it locally and I'm fine
 with having a vercel project.
 
+## Run Tests
+
+```
+python -m unittest discover -s tests -v
+```
+
 ## Production
 
 Python code deployed on vercel and database is provisioned by Supabase.
@@ -40,4 +46,5 @@ git push origin main
 
 - use pipenv so we can explicitly set python version
 - better logging
-- some unit and integration tests
+- integration tests
+- comprehensive unittests

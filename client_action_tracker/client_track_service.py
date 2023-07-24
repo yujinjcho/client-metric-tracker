@@ -1,8 +1,7 @@
-
 from typing import List, Callable
 
 from client_action_tracker.datastore import Datastore
-from client_action_tracker.models import parse_event_dict
+from client_action_tracker.models import parse_event_dict, Event
 
 
 class ClientTrackService:
@@ -22,7 +21,7 @@ class ClientTrackService:
         if not events_raw:
             return
 
-        events: List[dict] = []
+        events: List[Event] = []
         for event_raw in events_raw:
             events.append(parse_event_dict(event_raw, project_id))
 
