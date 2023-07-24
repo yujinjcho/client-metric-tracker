@@ -7,6 +7,7 @@ from flask_cors import CORS
 
 from client_action_tracker.client_track_service import ClientTrackService
 from client_action_tracker.datastore import Datastore
+from client_action_tracker.utils import get_project_id
 
 
 def create_app() -> Tuple[Flask, ClientTrackService]:
@@ -25,6 +26,6 @@ def create_app() -> Tuple[Flask, ClientTrackService]:
     conn = psycopg2.connect(**db_config)
 
     datastore = Datastore(conn)
-    service = ClientTrackService(datastore)
+    service = ClientTrackService(datastore, get_project_id)
 
     return app, service
