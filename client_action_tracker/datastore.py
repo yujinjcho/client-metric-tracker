@@ -1,5 +1,4 @@
 import json
-import logging
 from typing import List
 
 import psycopg2
@@ -15,7 +14,6 @@ class Datastore:
         self.conn: connection = conn
 
     def insert_events(self, events: List[Event]):
-        logging.info(f'inserting {len(events)} events')
         try:
             with self.conn.cursor() as cur:  # type: cursor
                 events_tuples = [
@@ -44,5 +42,4 @@ class Datastore:
                 self.conn.commit()
         except Error as e:
             self.conn.rollback()
-            logging.exception("An error occurred while inserting events")
             raise e
