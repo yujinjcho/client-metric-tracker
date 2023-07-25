@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 from typing import Tuple
 
 import psycopg2
@@ -14,7 +15,8 @@ from client_action_tracker.utils import get_project_id
 def create_app() -> Tuple[Flask, ClientTrackService]:
     logging.basicConfig(
         level=logging.INFO,
-        format=f'%(asctime)s - %(filename)s - %(message)s'
+        format=f'%(asctime)s - %(filename)s - %(message)s',
+        handlers=[logging.StreamHandler(sys.stdout)]
     )
 
     app = Flask(__name__)
