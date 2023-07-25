@@ -14,6 +14,7 @@ class Datastore:
         self.conn: connection = conn
 
     def insert_events(self, events: List[Event]):
+        print(f'Inserting {len(events)} events')
         try:
             with self.conn.cursor() as cur:  # type: cursor
                 events_tuples = [
