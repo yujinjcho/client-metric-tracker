@@ -1,3 +1,4 @@
+import logging
 from typing import List, Callable
 
 from client_action_tracker.datastore import Datastore
@@ -10,7 +11,7 @@ class ClientTrackService:
         self.get_project_id = get_project_id
 
     def hello_world(self) -> str:
-        print("Handling hello_world")
+        logging.info("Handling hello_world")
         return 'Hello, World'
 
     def create_events(self, events_raw: List[dict], api_key: str) -> None:

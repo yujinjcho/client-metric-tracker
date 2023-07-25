@@ -1,3 +1,4 @@
+import logging
 import os
 from typing import Tuple
 
@@ -11,9 +12,15 @@ from client_action_tracker.utils import get_project_id
 
 
 def create_app() -> Tuple[Flask, ClientTrackService]:
-    print("Creating app")
+    logging.basicConfig(
+        level=logging.INFO,
+        format=f'%(asctime)s - %(filename)s - %(message)s'
+    )
 
     app = Flask(__name__)
+
+    app.logger.info("Creating app")
+
     CORS(app, resources={r"/*": {"origins": ["http://localhost:3001", "https://www.simpleliftingapp.com"]}})
 
     db_config = {
