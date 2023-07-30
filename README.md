@@ -7,6 +7,7 @@ Backend service for collecting and service client metrics.
 Requires postgres, dbmate, python3.9 and vercel.
 
 - `dbmate up` to create database and run migrations locally.
+- `pipenv shell` to activate virtual environment
 - `vercel dev` to run app locally.
 
 Local dev currently relies on having a vercel project but you could
