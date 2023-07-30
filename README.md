@@ -45,6 +45,5 @@ git push origin main
 
 ## TODO
 
-- use pipenv so we can explicitly set python version
 - integration tests
 - comprehensive unittests

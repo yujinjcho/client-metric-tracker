@@ -14,7 +14,8 @@ def create_app() -> Tuple[Flask, ClientTrackService]:
     print("Creating app")
 
     app = Flask(__name__)
-    CORS(app, resources={r"/*": {"origins": ["http://localhost:3001", "https://www.simpleliftingapp.com"]}})
+    CORS(app, resources={
+        r"/*": {"origins": ["http://localhost:3001", "http://localhost:3000", "https://www.simpleliftingapp.com"]}})
 
     db_config = {
         'dbname': os.environ.get('DB_NAME', 'client-metric-track'),
